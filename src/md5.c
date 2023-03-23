@@ -1,5 +1,20 @@
 #include"hash.h"
 
+__rhct_api void __cdecl hashstr_md5( unsigned const char* __str , char* __out ){
+    if ( !__str )
+    {
+        return;
+    }
+    unsigned char md[MD5_DIGEST_LENGTH];
+    memset( md , '\0' , sizeof( md ) );
+    MD5( __str , strlen( __str ) , md );
+    for ( int i = 0 ; i < MD5_DIGEST_LENGTH ; i++ )
+    {
+        sprintf( &( __out[i*2] ) , "%02x" , ( unsigned char ) md[i] );
+    }
+    return;
+}
+
 __rhct_api void __cdecl hashfile_md5( FILE* __f , char* __out ){
     unsigned char md[MD5_DIGEST_LENGTH];
     memset( md , '\0' , sizeof( md ) );
