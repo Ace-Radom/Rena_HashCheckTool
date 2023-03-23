@@ -3,11 +3,14 @@
 #ifndef _HASH_H_
 #define _HASH_H_
 
-#include<errno.h>
 #include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
+#include<errno.h>
+
+#include<openssl/crypto.h>
 #include<openssl/md5.h>
+#include<openssl/sha.h>
 
 #include"cps.h"
 
@@ -17,6 +20,8 @@ extern "C" {
 
 __rhct_api void __cdecl hashstr_md5( unsigned const char* __str , char* __out );
 __rhct_api void __cdecl hashfile_md5( FILE* __f , char* __out );
+__rhct_api void __cdecl hashstr_sha1( unsigned const char* __str , char* __out );
+__rhct_api void __cdecl hashfile_sha1( FILE* __f , char* __out );
 
 #ifdef __cplusplus
 }
