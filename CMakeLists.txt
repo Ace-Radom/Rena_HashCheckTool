@@ -20,7 +20,7 @@ file(GLOB OPENSSL_DLL_FILE_LIST ${OPENSSL_DLL_DIR}/*.dll)
 
 set(LIBRARY_OUTPUT_PATH    ${CMAKE_SOURCE_DIR}/bin)
 set(EXECUTABLE_OUTPUT_PATH ${CMAKE_SOURCE_DIR}/bin)
-set(CMAKE_INSTALL_PREFIX   ${CMAKE_SOURCE_DIR}/install)
+set(CMAKE_INSTALL_PREFIX   ${CMAKE_SOURCE_DIR}/install/Rena_HashCheckTool)
 
 add_definitions(-DEXPORTING_APIS)
 
@@ -42,6 +42,8 @@ target_link_libraries(rhct
 install(
     FILES
         ${OPENSSL_DLL_FILE_LIST}
+        ${LIBRARY_OUTPUT_PATH}/libhashf.dll
+        ${EXECUTABLE_OUTPUT_PATH}/rhct.exe
     DESTINATION
         ${CMAKE_INSTALL_PREFIX}/bin
 )
