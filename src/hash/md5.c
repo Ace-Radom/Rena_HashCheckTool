@@ -1,3 +1,5 @@
+// src code for hash.h (md5 part)
+
 #include"hash.h"
 
 __rhct_api void __cdecl hashstr_md5( unsigned const char* __str , char* __out ){
@@ -23,11 +25,11 @@ __rhct_api void __cdecl hashfile_md5( FILE* __f , char* __out ){
 
 #pragma region HASH
 
-    unsigned char buf[MD5_BLOCK_SIZE];
+    unsigned char buf[HASH_BLOCK_SIZE];
     memset( buf , '\0' , sizeof( buf ) );
     while ( 1 )
     {
-        int rFileLength = fread( buf , sizeof( unsigned char ) , MD5_BLOCK_SIZE , __f );
+        int rFileLength = fread( buf , sizeof( unsigned char ) , HASH_BLOCK_SIZE , __f );
         if ( rFileLength == 0 )
         {
             break;
@@ -42,5 +44,6 @@ __rhct_api void __cdecl hashfile_md5( FILE* __f , char* __out ){
     {
         sprintf( &( __out[i*2] ) , "%02x" , ( unsigned char ) md[i] );
     }
+    OPENSSL_cleanse( &C , sizeof( C ) );
     return;
 }
