@@ -53,3 +53,5 @@ dkms.conf
 
 # custom ignore settings
 *.code-workspace
+build
+bin
