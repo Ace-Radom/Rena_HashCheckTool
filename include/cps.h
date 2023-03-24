@@ -4,6 +4,9 @@
 #define _CPS_H_
 
 #define HASH_BLOCK_SIZE 1024
+#define MAX_PATH_LENGTH 0x7fff
+
+typedef char* PATH;
 
 #ifdef EXPORTING_APIS
 #define __rhct_api __declspec( dllexport )
