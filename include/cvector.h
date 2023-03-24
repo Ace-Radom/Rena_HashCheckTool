@@ -1,3 +1,9 @@
+/**
+ * This is a subproject first be created under BitUP project
+ * 
+ * cvector lib v1.0.5
+ */
+
 #ifndef _CVECTOR_H_
 #define _CVECTOR_H_
 
