@@ -43,4 +43,5 @@ __rhct_api void __cdecl hashfile_sha1( FILE* __f , char* __out ){
         sprintf( &( __out[i*2] ) , "%02x" , ( unsigned char ) md[i] );
     }
     OPENSSL_cleanse( &C , sizeof( C ) );
+    return;
 }
