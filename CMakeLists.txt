@@ -25,12 +25,7 @@ set(CMAKE_INSTALL_PREFIX   ${CMAKE_SOURCE_DIR}/install/Rena_HashCheckTool)
 add_definitions(-DEXPORTING_APIS)
 
 include_directories(${CMAKE_SOURCE_DIR}/include)
-include_directories(${CMAKE_SOURCE_DIR}/lib/pthread/include)
-# pthread include dir
 add_subdirectory(${CMAKE_SOURCE_DIR}/src)
-
-set(PTHREAD_SHARED_LIB ${CMAKE_SOURCE_DIR}/lib/pthread/bin/pthreadGC2.dll)
-set(PTHREAD_STATIC_LIB ${CMAKE_SOURCE_DIR}/lib/pthread/lib/libpthreadGC2.a)
 
 add_executable(rhct
     main.c
@@ -48,7 +43,6 @@ target_link_libraries(rhct
 install(
     FILES
         ${OPENSSL_DLL_FILE_LIST}
-        ${PTHREAD_SHARED_LIB}
         ${LIBRARY_OUTPUT_PATH}/libhashf.dll
         ${LIBRARY_OUTPUT_PATH}/libcvector.dll
         ${EXECUTABLE_OUTPUT_PATH}/rhct.exe
