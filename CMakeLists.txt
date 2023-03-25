@@ -23,6 +23,8 @@ set(EXECUTABLE_OUTPUT_PATH ${CMAKE_SOURCE_DIR}/bin)
 set(CMAKE_INSTALL_PREFIX   ${CMAKE_SOURCE_DIR}/install/Rena_HashCheckTool)
 
 add_definitions(-DEXPORTING_APIS)
+# add_definitions(-DUSING_PTHREAD)
+add_definitions(-DENABLE_ERROUT)
 
 include_directories(${CMAKE_SOURCE_DIR}/include)
 add_subdirectory(${CMAKE_SOURCE_DIR}/src)
@@ -33,6 +35,7 @@ add_executable(rhct
 target_link_libraries(rhct
     hashf
     dirop
+    rhct_fstatic
 )
 # build Rena HashCheck Tool exe
 

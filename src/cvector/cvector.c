@@ -6,7 +6,9 @@ __rhct_api void __cdecl cv_init( c_vector* __v , long long __cap ){
     __v -> items = calloc( __v -> cap , sizeof( void* ) );
     if ( !__v -> items )
     {
-        printf( "Memory allocate failed\n" );
+#ifdef ENABLE_ERROUT
+        fprintf( stderr , "[cvector lib] -> cv_init(c_vector*,long long): Memory allocate failed, stop\n" );
+#endif
         exit( 1 );
     }
     return;
@@ -17,7 +19,9 @@ __rhct_api void __cdecl cv_resize( c_vector* __v , long long __cap ){
     __v -> items = realloc( __v -> items , sizeof( void* ) * ( __v -> cap ) );
     if ( !__v -> items )
     {
-        printf( "Memory allocate failed\n" );
+#ifdef ENABLE_ERROUT
+        fprintf( stderr , "[cvector lib] -> cv_resize(c_vector*,long long): Memory allocate failed, stop\n" );
+#endif
         exit( 1 );
     }
     return;
