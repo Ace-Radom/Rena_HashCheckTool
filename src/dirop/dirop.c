@@ -29,8 +29,10 @@ __rhct_api void __cdecl traverse_dir( const PATH __path , c_vector* __out ){
             {
                 cv_push_back( __out , ( void* ) this_path );
             }
+            free( this_path );
         }
     } while ( _findnext( hFile , &FileInfo ) == 0 );
     _findclose( hFile );
+    free( pathName );
     return;
 }
