@@ -45,3 +45,13 @@ __rhct_api void __cdecl hashfile_sha1( FILE* __f , char* __out ){
     OPENSSL_cleanse( &C , sizeof( C ) );
     return;
 }
+
+#ifdef USING_PTHREAD
+
+__rhct_api void* __cdecl hashfile_sha1_mt( void* __arg_package ){
+    hashfile_arg_package* package = ( hashfile_arg_package* ) __arg_package;
+    hashfile_sha1( package -> f , package -> out );
+    return NULL;
+}
+
+#endif

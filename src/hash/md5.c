@@ -47,3 +47,13 @@ __rhct_api void __cdecl hashfile_md5( FILE* __f , char* __out ){
     OPENSSL_cleanse( &C , sizeof( C ) );
     return;
 }
+
+#ifdef USING_PTHREAD
+
+__rhct_api void* __cdecl hashfile_md5_mt( void* __arg_package ){
+    hashfile_arg_package* package = ( hashfile_arg_package* ) __arg_package;
+    hashfile_md5( package -> f , package -> out );
+    return NULL;
+}
+
+#endif
