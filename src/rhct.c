@@ -4,6 +4,7 @@ errno_t create_hash_list( PATH __dir , PATH __HashListFile , hash_type __type ){
     c_vector filelist;
     cv_init( &filelist , 10 );
     traverse_dir( __dir , &filelist );
+    cv_print_str( &filelist );
     if ( cv_len( &filelist ) == 0 )
     {
 #ifdef ENABLE_ERROUT
@@ -34,8 +35,12 @@ errno_t create_hash_list( PATH __dir , PATH __HashListFile , hash_type __type ){
         if ( f == NULL )
         {
 #ifdef ENABLE_ERROUT
-            fprintf( stderr , "[rhct lib] -> create_hash_list(PATH,PATH,hash_type): cannot open file \"%s\", skip" , this_file );
+            fprintf( stderr , "[rhct lib] -> create_hash_list(PATH,PATH,hash_type): cannot open file \"%s\", skip\n" , this_file );
 #endif
+            fclose( f );
+            free( hash );
+            free( this_file );
+            cv_pop_front( &filelist );
             continue;
         }
         
@@ -50,7 +55,7 @@ errno_t create_hash_list( PATH __dir , PATH __HashListFile , hash_type __type ){
 
             default:
                 #ifdef ENABLE_ERROUT
-                fprintf( stderr , "[rhct lib] -> create_hash_list(PATH,PATH,hash_type): enum type error, stop" );
+                fprintf( stderr , "[rhct lib] -> create_hash_list(PATH,PATH,hash_type): enum type error, stop\n" );
                 #endif
                 return ENUM_ERR;
                 break;
@@ -122,9 +127,11 @@ errno_t create_hash_list_mt( PATH __dir , PATH __HashListFile , hash_type __type
             if ( args[i].f == NULL )
             {
 #ifdef ENABLE_ERROUT
-                fprintf( stderr , "[rhct lib] -> create_hash_list(PATH,PATH,hash_type): cannot open file \"%s\", skip" , this_file );
+                fprintf( stderr , "[rhct lib] -> create_hash_list_mt(PATH,PATH,hash_type,uint16_t): cannot open file \"%s\", skip\n" , this_file );
 #endif
+                fclose( args[i].f );
                 free( this_file );
+                cv_pop_front( &filelist );
                 continue;
             }
             args[i].out = ( char* ) malloc( SHA512_DIGEST_LENGTH );
@@ -141,7 +148,7 @@ errno_t create_hash_list_mt( PATH __dir , PATH __HashListFile , hash_type __type
 
                 default:
                     #ifdef ENABLE_ERROUT
-                    fprintf( stderr , "[rhct lib] -> create_hash_list_mt(PATH,PATH,hash_type,uint16_t): enum type error, stop" );
+                    fprintf( stderr , "[rhct lib] -> create_hash_list_mt(PATH,PATH,hash_type,uint16_t): enum type error, stop\n" );
                     #endif
                     return ENUM_ERR;
                     break;
