@@ -32,7 +32,12 @@ typedef enum {
 } hash_type;
 
 errno_t create_hash_list( PATH __dir , PATH __HashListFile , hash_type __type );
-errno_t check_all_in_dir( PATH __dir );
+errno_t check_hash_list( PATH __dir );
+
+#ifdef USING_PTHREAD
+errno_t create_hash_list_mt( PATH __dir , PATH __HashListFile , hash_type __type , uint16_t threadsNUM );
+errno_t check_hash_list_mt( PATH __dir , uint16_t threadsNUM );
+#endif
 
 #ifdef __cplusplus
 }

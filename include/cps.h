@@ -5,6 +5,7 @@
 
 #define HASH_BLOCK_SIZE 1024
 #define MAX_PATH_LENGTH 0x7fff
+#define THREADS_NUM     4
 
 typedef char* PATH;
 
