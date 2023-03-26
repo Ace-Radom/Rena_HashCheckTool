@@ -4,6 +4,8 @@ add_subdirectory(hash)
 # build hash functions
 add_subdirectory(dirop)
 # build dir operation functions
+add_subdirectory(console_ext)
+# build console ext
 
 add_library(rhct_fstatic STATIC
     ${CMAKE_CURRENT_SOURCE_DIR}/rhct.c
