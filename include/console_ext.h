@@ -17,6 +17,7 @@ extern "C" {
 __rhct_api int __cdecl wherex();
 __rhct_api int __cdecl wherey();
 __rhct_api void __cdecl gotoxy( int __x , int __y );
+__rhct_api void __cdecl erase_output_chars( int __num );
 
 #ifdef __cplusplus
 }
