@@ -7,6 +7,9 @@
 #define MAX_PATH_LENGTH 0x7fff
 #define THREADS_NUM     4
 
+#define PROCESSBAR_CHAR   "="
+#define PROCESSBAR_LENGTH  50
+
 typedef char* PATH;
 
 #ifdef EXPORTING_APIS

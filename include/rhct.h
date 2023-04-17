@@ -13,6 +13,7 @@
 #include"cps.h"
 #include"hash.h"
 #include"dirop.h"
+// #include"console_ext.h"
 
 #define ENUM_ERR                     1
 #define TARGETDIR_EMPTY             -1

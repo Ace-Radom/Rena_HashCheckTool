@@ -4,7 +4,6 @@ errno_t create_hash_list( PATH __dir , PATH __HashListFile , hash_type __type ){
     c_vector filelist;
     cv_init( &filelist , 10 );
     traverse_dir( __dir , &filelist );
-    cv_print_str( &filelist );
     if ( cv_len( &filelist ) == 0 )
     {
 #ifdef ENABLE_ERROUT
@@ -25,12 +24,34 @@ errno_t create_hash_list( PATH __dir , PATH __HashListFile , hash_type __type ){
         return HASHLISTFILE_CREATION_ERROR;
     } // cannot open / create hashlist
 
+/** @note console ext part 
+    long long filelist_length = cv_len( &filelist );
+    long long file_finishedcheck_NUM = 0;
+    printf( "Total %d files collected\n" , filelist_length );
+    int pb_x = wherex() + 2;
+    int pb_y = wherey();
+*/
+
     while ( cv_len( &filelist ) > 0 )
     {
+/** @note console ext part 
+        gotoxy( pb_x , pb_y );
+        print_process_bar( file_finishedcheck_NUM , filelist_length , PROCESSBAR_CHAR , PROCESSBAR_LENGTH );
+        printf( "\n" );
+        fflush( stdout );
+        // refresh process bar
+*/
+
         char* hash = ( char* ) malloc( SHA512_DIGEST_LENGTH );
         // use the langest output length of all hash function
         char* this_file = ( char* ) malloc( MAX_PATH_LENGTH );
         strcpy( this_file , ( char* ) filelist.items[0] );
+
+/** @note console ext part 
+        printf( "Finished checking %d files, total %d files\n" , file_finishedcheck_NUM , filelist_length );
+        // checked file num output
+*/
+
         FILE* f = fopen( this_file , "rb" );
         if ( f == NULL )
         {
@@ -67,7 +88,18 @@ errno_t create_hash_list( PATH __dir , PATH __HashListFile , hash_type __type ){
         free( hash );
         free( this_file );
         cv_pop_front( &filelist );
+/** @note console ext part 
+        file_finishedcheck_NUM++;
+*/
     }
+
+/** @note console ext part 
+    gotoxy( pb_x , pb_y );
+    print_process_bar( file_finishedcheck_NUM , filelist_length , PROCESSBAR_CHAR , PROCESSBAR_LENGTH );
+    printf( "\n" );
+    fflush( stdout );
+    // refresh process bar (100% display)
+*/
 
     fclose( hashlist );
     cv_clean( &filelist );

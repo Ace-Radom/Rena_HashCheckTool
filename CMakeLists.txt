@@ -35,7 +35,9 @@ add_executable(rhct
 target_link_libraries(rhct
     hashf
     dirop
+    console_ext
     rhct_fstatic
+    ${CMAKE_SOURCE_DIR}/lib/pdcurses.dll
 )
 # build Rena HashCheck Tool exe
 

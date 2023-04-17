@@ -19,6 +19,8 @@ __rhct_api int __cdecl wherey();
 __rhct_api void __cdecl gotoxy( int __x , int __y );
 __rhct_api void __cdecl erase_output_chars( int __num );
 
+__rhct_api void __cdecl print_process_bar( int __process , int __total , char* __pbc , int __pbcl );
+
 #ifdef __cplusplus
 }
 #endif
