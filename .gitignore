@@ -55,4 +55,5 @@ dkms.conf
 *.code-workspace
 build
 /bin
+/lib
 /install
